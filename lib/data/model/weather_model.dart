@@ -2,13 +2,13 @@
 import 'dart:convert';
 
 class WeatherModel {
-  final double currentWeatherData;
+  final double currentTemp;
   final String currentSky;
   final double currentPressure;
   final double currentWindSpeed;
   final double currentHumidity;
   WeatherModel({
-    required this.currentWeatherData,
+    required this.currentTemp,
     required this.currentSky,
     required this.currentPressure,
     required this.currentWindSpeed,
@@ -23,7 +23,7 @@ class WeatherModel {
     double? currentHumidity,
   }) {
     return WeatherModel(
-      currentWeatherData: currentWeatherData ?? this.currentWeatherData,
+      currentTemp: currentWeatherData ?? this.currentTemp,
       currentSky: currentSky ?? this.currentSky,
       currentPressure: currentPressure ?? this.currentPressure,
       currentWindSpeed: currentWindSpeed ?? this.currentWindSpeed,
@@ -33,7 +33,7 @@ class WeatherModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'currentWeatherData': currentWeatherData,
+      'currentTemp': currentTemp,
       'currentSky': currentSky,
       'currentPressure': currentPressure,
       'currentWindSpeed': currentWindSpeed,
@@ -51,7 +51,7 @@ class WeatherModel {
     // final currentHumidity = currentWeatherData['main']['humidity'];
 
     return WeatherModel(
-      currentWeatherData: currentWeatherData['main']['temp'] - 273 as double,
+      currentTemp: currentWeatherData['main']['temp'] - 273 as double,
       currentSky: currentWeatherData['weather'][0]['main'] as String,
       currentPressure: currentWeatherData['main']['pressure'] as double,
       currentWindSpeed: currentWeatherData['wind']['speed'] as double,
@@ -66,14 +66,14 @@ class WeatherModel {
 
   @override
   String toString() {
-    return 'WeatherModel(currentWeatherData: $currentWeatherData, currentSky: $currentSky, currentPressure: $currentPressure, currentWindSpeed: $currentWindSpeed, currentHumidity: $currentHumidity)';
+    return 'WeatherModel(currentWeatherData: $currentTemp, currentSky: $currentSky, currentPressure: $currentPressure, currentWindSpeed: $currentWindSpeed, currentHumidity: $currentHumidity)';
   }
 
   @override
   bool operator ==(covariant WeatherModel other) {
     if (identical(this, other)) return true;
 
-    return other.currentWeatherData == currentWeatherData &&
+    return other.currentTemp == currentTemp &&
         other.currentSky == currentSky &&
         other.currentPressure == currentPressure &&
         other.currentWindSpeed == currentWindSpeed &&
@@ -82,7 +82,7 @@ class WeatherModel {
 
   @override
   int get hashCode {
-    return currentWeatherData.hashCode ^
+    return currentTemp.hashCode ^
         currentSky.hashCode ^
         currentPressure.hashCode ^
         currentWindSpeed.hashCode ^
